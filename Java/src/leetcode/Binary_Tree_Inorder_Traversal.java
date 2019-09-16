@@ -11,7 +11,11 @@
  inorder : left self right
  preorder : self left right
 <<<<<<< HEAD
+<<<<<<< HEAD
  postorder : left right self
+=======
+ postorder : left righy
+>>>>>>> 778f3664a4f8d2ec4d6980a8461481820c0b3e6b
 =======
  postorder : left righy
 >>>>>>> 778f3664a4f8d2ec4d6980a8461481820c0b3e6b
