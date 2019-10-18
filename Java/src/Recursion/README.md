@@ -26,9 +26,29 @@ int factorial(int n)
 + x^n
 ```c
 double power(double x, int n) {
-if(n==0)
-return 1;
-else
-return x*power(x, n-1);
+    if(n==0)
+        return 1;
+    else
+        return x*power(x, n-1);
+}
+```
+
++ Fibonacci Number
+```c
+int fibonacci(int n) {
+    if (n<2)
+        return n;
+    else
+        return fibonacci(n-1) + fibonacci(n-2);
+}
+```
+
++ 최대공약수: Euclid Method
+```c
+int gcd(int p, int q) {
+    if (q==0)
+        return p;
+    else
+        return gcd(q, p%q);
 }
 ```
