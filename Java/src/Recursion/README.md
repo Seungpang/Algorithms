@@ -52,3 +52,27 @@ int gcd(int p, int q) {
         return gcd(q, p%q);
 }
 ```
+
+## Recursive Thinking
++ 문자열 길이 계산
+```c
+int length(char *str) {
+    if (*str == '\0')
+        return 0;
+    else
+        return 1 + length(str+1);
+}
+```
+
++ 순차 탐색
+```c
+int search(int data[], int n, int target) {
+    if (n <= 0)
+        return -1;
+    else if (target == items[n-1])
+        returm n-1;
+    else
+        return search(data, n-1, target);
+}
+```
+
