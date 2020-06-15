@@ -33,3 +33,17 @@ boolean findPath(x, y)
                     return true;
         return false;
 ```  
+
+```
+boolean findPath(x,y)
+    if (x,y) is either on the wall or a visited cell
+        return false;
+    else if (x,y) is the exit
+        return true;
+    else
+        mark (x,y) as a visited cell;
+        for each neighbouring cell (x’,y’) of (x,y) do
+            if findPath(x’,y’)
+                return true;
+        return false;
+```
