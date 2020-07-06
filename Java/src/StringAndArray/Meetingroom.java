@@ -3,21 +3,21 @@ package Sort;
 import java.util.Arrays;
 import java.util.Comparator;
 
-class Interval{
-
-    int start;
-    int end;
-
-    Interval(){
-        start = 0;
-        end = 0;
-    }
-
-    Interval(int s, int e) {
-        start = s;
-        end = e;
-    }
-}
+//class Interval{
+//
+//    int start;
+//    int end;
+//
+//    Interval(){
+//        start = 0;
+//        end = 0;
+//    }
+//
+//    Interval(int s, int e) {
+//        start = s;
+//        end = e;
+//    }
+//}
 public class Meetingroom {
     public static void main(String[] args) {
         Meetingroom a = new Meetingroom();
