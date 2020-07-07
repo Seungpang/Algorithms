@@ -1,4 +1,4 @@
-package Sort;
+package StringAndArray;
 
 public class MaxSubArray {
     public static void main(String[] args) {

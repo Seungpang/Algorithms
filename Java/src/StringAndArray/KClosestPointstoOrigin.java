@@ -1,4 +1,4 @@
-package Sort;
+package StringAndArray;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

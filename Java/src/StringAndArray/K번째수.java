@@ -1,4 +1,4 @@
-package Sort;
+package StringAndArray;
 import java.util.*;
 
 public class K번째수 {

@@ -1,4 +1,4 @@
-package Sort;
+package StringAndArray;
 
 public class PlusOne {
 

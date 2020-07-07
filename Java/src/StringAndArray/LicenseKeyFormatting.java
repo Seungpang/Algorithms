@@ -1,4 +1,4 @@
-package Sort;
+package StringAndArray;
 
 public class LicenseKeyFormatting {
     public static void main(String[] args) {
