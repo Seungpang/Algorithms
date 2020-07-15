@@ -38,23 +38,25 @@ public class NumberOfIsland_BFS {
         return count;
     }
 
-    public void bfs(char[][] grid, int x, int y) {
-        grid[x][y] ='0';
+    public void bfs(char[][] grid, int x, int y){
+        grid[x][y] = '0';
         Queue<int[]> queue = new LinkedList<>();
-        queue.offer(new int[] {x,y});
-        while(!queue.isEmpty()) {
+        queue.offer(new int[] {x, y});
+        while (!queue.isEmpty()){
             int size = queue.size();
-            int[] p = queue.poll();
-            for( int i=0; i<size; i++) {
-                for(int[] dir :dirs) {
-                    int dx = p[0]+dir[0];
-                    int dy = p[1]+dir[1];
-                    if(dx>=0&& dx<m && dy>=0 && dy<n && grid[dx][dy]=='1') {
+            int[] point = queue.poll();
+            for(int i =0; i<size; i++){
+                for(int[] dir: dirs){
+                    int dx = point[0]+dir[0];
+                    int dy = point[1]+dir[1];
+                    if(dx>=0 && dx<m && dy >=0 && dy <n && grid[dx][dy]=='1'){
                         grid[dx][dy]='0';
-                        queue.offer(new int[] {dx, dy});
+                        queue.offer(new int[] {dx,dy});
                     }
                 }
+
             }
+
         }
     }
 
