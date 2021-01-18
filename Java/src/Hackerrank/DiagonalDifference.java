@@ -24,7 +24,7 @@ public class DiagonalDifference {
         }
         return Math.abs(l_to_r_sum - r_to_l_sum);
     }
-    
+
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
@@ -32,7 +32,6 @@ public class DiagonalDifference {
         int n = Integer.parseInt(bufferedReader.readLine().trim());
 
         List<List<Integer>> arr = new ArrayList<>();
-
         IntStream.range(0, n).forEach(i -> {
             try {
                 arr.add(

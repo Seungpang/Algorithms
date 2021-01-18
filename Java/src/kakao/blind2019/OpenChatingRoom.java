@@ -31,7 +31,7 @@ public class OpenChatingRoom{
 
         String[] answer = new String[ansList.size()];
         ansList.toArray(answer);
-
+ 
         return answer;
     }
 }
