@@ -4,7 +4,7 @@ public class PlusOne {
 
     public static void main(String[] args) {
         //int[] digits = {1,2,3};
-        int[] digits = {1,3,9};
+        int[] digits = {4,9,9};
         int[] result = plusOne(digits);
         for(int i : result)
             System.out.println("val: "+i);

@@ -1,0 +1,14 @@
+
+0
+java:S1220""Move this file to a named package.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(à©ı¢8‚•Ø¯‰/
+I
+java:S1128",Remove this unused import 'java.util.Queue'.(Äá™ô8¼‹¥/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(µˆœÑ8È…†°‰/
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Òô‰Úûÿÿÿÿ8Îä©¯‰/
+r	java:S117	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ÅÚçÿÿÿÿÿ8™·Ú¯‰/
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
+X	java:S125("<This block of commented-out lines of code should be removed.(‹ˆóâ8¯¶–Å‰/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(µˆœÑ8‚ºŠ°‰/
+e
+java:S3824"IReplace this "Map.containsKey()" with a call to "Map.computeIfPresent()".(Ä«¼8È…†°‰/

@@ -10,7 +10,7 @@ public class UniqueEmailAddresses {
                 "test.e.mail+toto.jane@coding.com",
                 "testemail+tom@cod.ing.com"};
 
-        System.out.println(a.numUniqueEmails(emails));
+        System.out.println(a.solution(emails));
     }
 
 
@@ -46,7 +46,18 @@ public class UniqueEmailAddresses {
             sb.append(str);
         }
         return sb.toString();
+    }
 
+    public int solution(String[] emails) {
+
+        Set<String> set = new HashSet<>();
+
+        for(String email : emails) {
+            String[] parts = email.split("@");
+            String[] localName = parts[0].split("\\+");
+            set.add(localName[0].replace(".", "") + "@" + parts[1]);
+        }
+        return set.size();
     }
 
 }
