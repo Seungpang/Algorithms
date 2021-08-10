@@ -1,28 +1,28 @@
 
-H
-java:S1481"&Remove this unused "r" local variable.(ü¸¡æüÿÿÿÿ8—á§°‰/
-Z
-java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8°îÅ‰/
-Z	java:S1060"9Replace this use of System.out or System.err by a logger.(Ü×ûúÿÿÿÿ8Äğñß‰/
-Q
-java:S3740"/Provide the parametrized type for this generic.(éèÈşÿÿÿÿ8°îÅ‰/
-W
-java:S2209"5Change this instance-reference to a static reference.(¦¢‚œıÿÿÿÿ8°îÅ‰/
-W
-java:S1854"5Remove this useless assignment to local variable "r".(ü¸¡æüÿÿÿÿ8—á§°‰/
 S
 java:S2696-"6Make the enclosing method "static" or remove this set.(«î—8î× Å‰/
+Z	java:S1067"9Replace this use of System.out or System.err by a logger.(›ñ©¿ûÿÿÿÿ8‚îß‰/
+W
+java:S1854"5Remove this useless assignment to local variable "r".(ü¸¡æüÿÿÿÿ8—á§°‰/
 U	java:S106	"9Replace this use of System.out or System.err by a logger.(òÚş‚8Ç¨°‰/
+Z
+java:S1128"8Remove this unused import 'java.util.stream.Collectors'.(Óóº´úÿÿÿÿ8°îÅ‰/
+0
+java:S1220""Move this file to a named package.
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(òßêàúÿÿÿÿ
+W
+java:S2209"5Change this instance-reference to a static reference.(¦¢‚œıÿÿÿÿ8°îÅ‰/
+;
+java:S1659"Declare "r" on a separate line.(—‚ğH8î× Å‰/
 L
 java:S3740"/Provide the parametrized type for this generic.(ÌÎ÷è8î× Å‰/
 Z	java:S106/"9Replace this use of System.out or System.err by a logger.(šçÑäşÿÿÿÿ8Äğñß‰/
-Z	java:S1066"9Replace this use of System.out or System.err by a logger.(©´ŞÀşÿÿÿÿ8ø…íß‰/
-;
-java:S1659"Declare "r" on a separate line.(—‚ğH8î× Å‰/
-Z	java:S1067"9Replace this use of System.out or System.err by a logger.(›ñ©¿ûÿÿÿÿ8‚îß‰/
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(òßêàúÿÿÿÿ
-0
-java:S1220""Move this file to a named package.
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(©´ŞÀşÿÿÿÿ8‹øêß‰/
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(Ü×ûúÿÿÿÿ8Äğñß‰/
+Q
+java:S3740"/Provide the parametrized type for this generic.(éèÈşÿÿÿÿ8°îÅ‰/
 X
 java:S2696"6Make the enclosing method "static" or remove this set.(¦¢‚œıÿÿÿÿ8°îÅ‰/
+H
+java:S1481"&Remove this unused "r" local variable.(ü¸¡æüÿÿÿÿ8—á§°‰/
+Z	java:S1066"9Replace this use of System.out or System.err by a logger.(©´ŞÀşÿÿÿÿ8ø…íß‰/
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(©´ŞÀşÿÿÿÿ8‹øêß‰/
