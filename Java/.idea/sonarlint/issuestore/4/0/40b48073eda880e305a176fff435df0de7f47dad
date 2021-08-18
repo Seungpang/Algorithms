@@ -1,9 +1,0 @@
-
-m
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(êì£éøÿÿÿÿ
-\
-java:S1126"AReplace this if-then-else statement by a single return statement.(óÕ³İûÿÿÿÿ
-?
-java:S1125")Remove the literal "false" boolean value.(É¦Ñ©
-n	java:S135"YReduce the total number of break and continue statements in this loop to use at most one.(´Å¶
-k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(êì£éøÿÿÿÿ

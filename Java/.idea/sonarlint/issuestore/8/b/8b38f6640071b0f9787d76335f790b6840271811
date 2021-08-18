@@ -1,6 +1,0 @@
-
-c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ΐίζ“
-Q	java:S125"<This block of commented-out lines of code should be removed.(έώΨ
-N	java:S106
-"9Replace this use of System.out or System.err by a logger.(‘‚›Τ
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®–’ψÿÿÿÿ
