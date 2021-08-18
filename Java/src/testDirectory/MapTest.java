@@ -10,16 +10,16 @@ public class MapTest {
     public static void main(String[] args) {
         Map<String, Integer> test = new HashMap<>();
         Map<String, Integer> aa = new HashMap<>();
-        aa.put("test", 2);
-        aa.put("test2", 4);
+        aa.put("Test.test", 2);
+        aa.put("Test.test2", 4);
         test.putAll(aa);
-        aa.put("test", 5);
+        aa.put("Test.test", 5);
         System.out.println(aa.toString());
         Member meber = new Member(testDirectory.test.AA);
 
         System.out.println(meber.getAbc().getName().contains("NE"));
 
-        //System.out.println(test.toString());
+        //System.out.println(Test.test.toString());
     }
 }
 

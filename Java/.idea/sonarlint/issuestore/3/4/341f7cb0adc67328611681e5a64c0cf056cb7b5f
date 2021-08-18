@@ -1,9 +1,0 @@
-
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8ßĞÇ€§/
-T	java:S106"9Replace this use of System.out or System.err by a logger.(ƒÚáB8±¯™‚§/
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(¦›ÂÊÿÿÿÿÿ8õ¥Š§/
-N
-java:S1128",Remove this unused import 'java.util.Stack'.(ŞÈ†üúÿÿÿÿ8Æìô€§/
-0
-java:S1220""Move this file to a named package.

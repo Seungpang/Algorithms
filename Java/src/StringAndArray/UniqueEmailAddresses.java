@@ -6,8 +6,8 @@ public class UniqueEmailAddresses {
 
     public static void main(String[] args) {
         UniqueEmailAddresses a = new UniqueEmailAddresses();
-        String[] emails = {"test.email+james@coding.com",
-                "test.e.mail+toto.jane@coding.com",
+        String[] emails = {"Test.test.email+james@coding.com",
+                "Test.test.e.mail+toto.jane@coding.com",
                 "testemail+tom@cod.ing.com"};
 
         System.out.println(a.solution(emails));

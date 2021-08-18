@@ -1,14 +1,0 @@
-
-g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(óÎ °ùÿÿÿÿ
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Òô‰Úûÿÿÿÿ8Îä©¯‰/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(à©ý¢8‚•Ø¯‰/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(µˆœÑ8‚ºŠ°‰/
-X	java:S125("<This block of commented-out lines of code should be removed.(‹ˆóâ8¯¶–Å‰/
-e
-java:S3824"IReplace this "Map.containsKey()" with a call to "Map.computeIfPresent()".(Ä«¼8È…†°‰/
-I
-java:S1128",Remove this unused import 'java.util.Queue'.(Äá™ô8¼‹¥/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(µˆœÑ8È…†°‰/
-0
-java:S1220""Move this file to a named package.
-r	java:S117	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷ÅÚçÿÿÿÿÿ8™·Ú¯‰/

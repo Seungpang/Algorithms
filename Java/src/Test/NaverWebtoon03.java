@@ -1,5 +1,4 @@
-import java.util.List;
-import java.util.Stack;
+package Test;
 
 public class NaverWebtoon03 {
 

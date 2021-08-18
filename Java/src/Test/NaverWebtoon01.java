@@ -1,3 +1,5 @@
+package Test;
+
 import java.util.*;
 
 public class NaverWebtoon01 {

@@ -1,7 +1,7 @@
+package Test;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 
 public class test {
     public static void main(String[] args) {

@@ -1,14 +1,14 @@
 
+l	java:S116"PRename this field "Board" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çô’Ø8â¿‡—/
 B
 java:S1659*" Declare "nc" on a separate line.(¶‘÷Ÿøÿÿÿÿ8’ñ¶—/
 C
-java:S1659"!Declare "col" on a separate line.(ûÓÛÿÿÿÿÿ8‘Š‡—/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(è›µ¢8ıĞı–/
-C
 java:S1659"!Declare "cnt" on a separate line.(ûÓÛÿÿÿÿÿ8‘Š‡—/
-l	java:S116"PRename this field "Board" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(çô’Ø8â¿‡—/
+U	java:S106"9Replace this use of System.out or System.err by a logger.(è›µ¢8ıĞı–/
 t
 java:S3776C"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(š²ÒÎşÿÿÿÿ8ÇØ§—/
+z	java:S1352"YReduce the total number of break and continue statements in this loop to use at most one.(İ›õäøÿÿÿÿ8¹ÿ½—/
+C
+java:S1659"!Declare "col" on a separate line.(ûÓÛÿÿÿÿÿ8‘Š‡—/
 t
 java:S3776 "RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(áÌö¤ùÿÿÿÿ8¹ÿ½—/
-z	java:S1352"YReduce the total number of break and continue statements in this loop to use at most one.(İ›õäøÿÿÿÿ8¹ÿ½—/
