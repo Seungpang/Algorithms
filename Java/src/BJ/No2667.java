@@ -43,6 +43,18 @@ public class No2667 {
             }
         }
     }
+    public static void dfs(int i, int j, int cnt) {
+        check[i][j] = cnt;
+        for (int k=0; k<4; k++) {
+            int nx = i + dx[k];
+            int ny = j + dy[k];
+            if (0 <= nx && nx < n && 0 <= ny && ny < n) {
+                if (a[nx][ny] == 1 && check[nx][ny] == 0) {
+                    dfs(nx, ny, cnt);
+                }
+            }
+        }
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -61,7 +73,7 @@ public class No2667 {
         for (int i=0; i<n; i++) {
             for (int j=0; j<n; j++) {
                 if (a[i][j] == 1 && check[i][j] ==0) {
-                    bfs(i, j, ++cnt);
+                    dfs(i, j, ++cnt);
                 }
             }
         }
