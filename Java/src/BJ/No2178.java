@@ -6,14 +6,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Point {
-    int x, y;
-    Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
 public class No2178 {
 
     static int[] dx = {0, 0, -1, 1};
@@ -33,12 +25,12 @@ public class No2178 {
                 a[i][j] = s.charAt(j) - '0';
             }
         }
-        Queue<Point> q = new LinkedList<>();
-        q.add(new Point(0, 0));
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(0, 0));
         check[0][0] = true;
         dist[0][0] = 1;
         while (!q.isEmpty()) {
-            Point p = q.remove();
+            Pair p = q.remove();
             int x = p.x;
             int y = p.y;
             for (int k=0; k<4; k++) {
@@ -46,7 +38,7 @@ public class No2178 {
                 int ny = y + dy[k];
                 if (0 <= nx && nx < n && 0 <= ny && ny < m) {
                     if (check[nx][ny] == false && a[nx][ny] == 1) {
-                        q.add(new Point(nx, ny));
+                        q.add(new Pair(nx, ny));
                         dist[nx][ny] = dist[x][y] + 1;
                         check[nx][ny] = true;
                     }

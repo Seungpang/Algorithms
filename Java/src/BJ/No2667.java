@@ -7,13 +7,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-class Pair {
-    int x, y;
-    Pair(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-}
+//class Pair {
+//    int x, y;
+//    Pair(int x, int y) {
+//        this.x = x;
+//        this.y = y;
+//    }
+//}
 
 public class No2667 {
 
