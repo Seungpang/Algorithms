@@ -2,9 +2,13 @@ package BJ;
 //bfs
 //벽 부수고 이동하기3
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 
 class Pair3 {
 
@@ -23,23 +27,24 @@ public class No16933 {
     static int[] dx = {0, 0, -1, 1};
     static int[] dy = {1, -1, 0, 0};
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        int l = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        String[] st = bf.readLine().split(" ");
+        int n = Integer.parseInt(st[0]);
+        int m = Integer.parseInt(st[1]);
+        int l = Integer.parseInt(st[2]);
         int[][] a = new int[n][m];
         int[][][][] dist = new int[n][m][l + 1][2];
-        sc.nextLine();
         for (int i = 0; i < n; i++) {
-            String s = sc.nextLine();
+            String s = bf.readLine();
             for (int j = 0; j < m; j++) {
                 a[i][j] = s.charAt(j) - '0';
             }
         }
         dist[0][0][0][0] = 1;
         Queue<Pair3> q = new LinkedList<>();
-        q.add(new Pair3(0, 0, 0, 0));
+        q.offer(new Pair3(0, 0, 0, 0));
         while (!q.isEmpty()) {
             Pair3 p = q.remove();
             int x = p.x;
@@ -52,17 +57,17 @@ public class No16933 {
                 if (nx <0 || nx >=n || ny < 0 || ny >= m) continue;
                 if (a[nx][ny] == 0 && dist[nx][ny][z][1 - night] == 0) {
                     dist[nx][ny][z][1 - night] = dist[x][y][z][night] + 1;
-                    q.add(new Pair3(nx, ny, z, 1 - night));
+                    q.offer(new Pair3(nx, ny, z, 1 - night));
                 }
                 if (night == 0 && z + 1 <= l && a[nx][ny] == 1
                     && dist[nx][ny][z + 1][1 - night] == 0) {
                     dist[nx][ny][z + 1][1 - night] = dist[x][y][z][night] + 1;
-                    q.add(new Pair3(nx, ny, z + 1, 1 - night));
+                    q.offer(new Pair3(nx, ny, z + 1, 1 - night));
                 }
             }
             if (dist[x][y][z][1 - night] == 0) {
                 dist[x][y][z][1 - night] = dist[x][y][z][night] + 1;
-                q.add(new Pair3(x, y, z, 1 - night));
+                q.offer(new Pair3(x, y, z, 1 - night));
             }
         }
         int ans = -1;
@@ -76,6 +81,7 @@ public class No16933 {
                 }
             }
         }
-        System.out.println(ans);
+        bw.write(String.valueOf(ans));
+        bw.flush();
     }
 }
