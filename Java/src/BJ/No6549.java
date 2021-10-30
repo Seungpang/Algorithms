@@ -21,7 +21,29 @@ public class No6549 {
             long ans = 0;
             for (int i = 0; i < n; i++) {
                 int left = i;
+                while (!s.isEmpty() && a[s.peek()] > a[i]) {
+                    long height = a[s.pop()];
+                    long width = i;
+                    if (!s.isEmpty()) {
+                        width = (i - s.peek() - 1);
+                    }
+                    if (ans < (long) width * height) {
+                        ans = (long) width * height;
+                    }
+                }
+                s.push(i);
             }
+            while (!s.isEmpty()) {
+                long height = a[s.pop()];
+                long width = n;
+                if (!s.isEmpty()) {
+                    width = n - s.peek() - 1;
+                }
+                if (ans < (long) width * height) {
+                    ans = (long) width * height;
+                }
+            }
+            System.out.println(ans);
         }
     }
 }
