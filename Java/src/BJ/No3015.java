@@ -34,7 +34,7 @@ public class No3015 {
                 }
             }
             if (!s.empty()) {
-                ans += 1L;
+                ans += 1;
             }
             s.push(h);
             c.push(cnt);

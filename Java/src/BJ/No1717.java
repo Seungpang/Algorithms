@@ -19,12 +19,15 @@ public class No1717 {
             return parent[x] = find(parent[x]);
         }
     }
+
     static void union(int x, int y) {
         x = find(x);
         y = find(y);
         if (x == y) return;
         if (rank[x] < rank[y]) {
-            int temp = x; x = y; y = temp;
+            int temp = x;
+            x = y;
+            y = temp;
         }
         parent[y] = x;
         if (rank[x] == rank[y]) {
