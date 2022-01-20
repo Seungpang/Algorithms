@@ -9,6 +9,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.StringTokenizer;
 
 class Pair3 {
 
@@ -23,21 +24,21 @@ class Pair3 {
 }
 
 public class No16933 {
-
+    //TODO: 시간초과 해결하기
     static int[] dx = {0, 0, -1, 1};
     static int[] dy = {1, -1, 0, 0};
 
     public static void main(String[] args) throws IOException {
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        String[] st = bf.readLine().split(" ");
-        int n = Integer.parseInt(st[0]);
-        int m = Integer.parseInt(st[1]);
-        int l = Integer.parseInt(st[2]);
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        int l = Integer.parseInt(st.nextToken());
         int[][] a = new int[n][m];
         int[][][][] dist = new int[n][m][l + 1][2];
         for (int i = 0; i < n; i++) {
-            String s = bf.readLine();
+            String s = br.readLine();
             for (int j = 0; j < m; j++) {
                 a[i][j] = s.charAt(j) - '0';
             }
