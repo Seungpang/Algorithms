@@ -4,31 +4,27 @@ import java.util.Scanner;
 
 public class No1929 {
 
-    public static boolean[] prime;
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int start = sc.nextInt();
-        int end = sc.nextInt();
+        final Scanner sc = new Scanner(System.in);
+        final int m = sc.nextInt();
+        final int n = sc.nextInt();
+        int[] arr = new int[n + 1];
 
-        prime = new boolean[end + 1];
-        getPrime();
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = start; i <= end; i++) {
-            if (!prime[i]) {
-                sb.append(i).append('\n');
+        for (int i = 2; i <= n; i++) {
+            arr[i] = i;
+        }
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (arr[i] == 0) {
+                continue;
+            }
+            for (int j = i + i; j <= n; j = j + i) {
+                arr[j] = 0;
             }
         }
-        System.out.println(sb);
-    }
 
-    public static void getPrime() {
-        prime[0] = prime[1] = true;
-
-        for (int i = 2; i <= Math.sqrt(prime.length); i++) {
-            if(prime[i]) continue;
-            for (int j = i * i; j < prime.length; j += i) {
-                prime[j] = true;
+        for (int i = m; i <= n; i++) {
+            if (arr[i] != 0) {
+                System.out.println(arr[i]);
             }
         }
     }
