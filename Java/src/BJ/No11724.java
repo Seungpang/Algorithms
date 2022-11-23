@@ -4,20 +4,22 @@ package BJ;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
 public class No11724 {
-    static ArrayList<Integer>[] a;
+
+    static List<Integer>[] a;
     static boolean[] check;
 
     static void dfs(int x) {
-        if(check[x]) {
+        if (check[x]) {
             return;
         }
         check[x] = true;
         for (int y : a[x]) {
-            if (check[y] == false) {
+            if (!check[y]) {
                 dfs(y);
             }
         }
@@ -28,8 +30,8 @@ public class No11724 {
         q.add(v);
         check[v] = true;
         while (!q.isEmpty()) {
-            int x =q.remove();
-            for (int y: a[x]) {
+            int x = q.remove();
+            for (int y : a[x]) {
                 if (check[y] == false) {
                     check[y] = true;
                     q.add(y);
@@ -43,11 +45,11 @@ public class No11724 {
         int n = sc.nextInt();
         int m = sc.nextInt();
         a = new ArrayList[n + 1];
-        for (int i=1; i<=n; i++) {
+        for (int i = 1; i <= n; i++) { //인접 리스트 초기화
             a[i] = new ArrayList<>();
         }
 
-        for (int i=0; i<m; i++) {
+        for (int i = 0; i < m; i++) {
             int from = sc.nextInt();
             int to = sc.nextInt();
             a[from].add(to);
@@ -56,10 +58,10 @@ public class No11724 {
 
         check = new boolean[n + 1];
         int result = 0;
-        for (int i=1; i<=n; i++) {
-            if (check[i] == false) {
-                bfs(i);
-                result += 1;
+        for (int i = 1; i <= n; i++) {
+            if (!check[i]) {
+                result++;
+                dfs(i);
             }
         }
         System.out.println(result);
