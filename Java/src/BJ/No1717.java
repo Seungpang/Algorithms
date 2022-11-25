@@ -1,66 +1,58 @@
 package BJ;
-//자료구조
+//유니온 파인드
 //집합의 표현
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.util.Scanner;
 
 public class No1717 {
 
-    static int[] parent = new int[1000001];
-    static int[] rank = new int[1000001];
-    static int find(int x) {
+    private static int[] parent;
+
+    public static void main(String[] args) {
+        final Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        parent = new int[n + 1];
+
+        for (int i = 0; i <= n; i++) {
+            parent[i] = i;
+        }
+
+        for (int i = 0; i < m; i++) {
+            int question = sc.nextInt();
+            int x = sc.nextInt();
+            int y = sc.nextInt();
+            if (question == 0) {
+                union(x, y);
+            } else {
+                if (isSame(x, y)) {
+                    System.out.println("YES");
+                } else {
+                    System.out.println("NO");
+                }
+            }
+        }
+    }
+
+    private static void union(int x, int y) {
+        x = find(x);
+        y = find(y);
+        if (x != y) {
+            parent[y] = x;
+        }
+    }
+
+    private static int find(final int x) {
         if (x == parent[x]) {
             return x;
-        } else {
+        }  else {
             return parent[x] = find(parent[x]);
         }
     }
 
-    static void union(int x, int y) {
+    private static boolean isSame(int x, int y) {
         x = find(x);
         y = find(y);
-        if (x == y) return;
-        if (rank[x] < rank[y]) {
-            int temp = x;
-            x = y;
-            y = temp;
-        }
-        parent[y] = x;
-        if (rank[x] == rank[y]) {
-            rank[x] = rank[y] + 1;
-        }
-    }
-    public static void main(String args[]) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] line = br.readLine().split(" ");
-        int n = Integer.parseInt(line[0]);
-        int m = Integer.parseInt(line[1]);
-        for (int i=0; i<=n; i++) {
-            parent[i] = i;
-            rank[i] = 0;
-        }
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        while (m-- > 0) {
-            String[] temp = br.readLine().split(" ");
-            int w = Integer.parseInt(temp[0]);
-            int x = Integer.parseInt(temp[1]);
-            int y = Integer.parseInt(temp[2]);
-            if (w == 0) {
-                union(x, y);
-            } else {
-                x = find(x);
-                y = find(y);
-                if (x == y) {
-                    bw.write("YES\n");
-                } else {
-                    bw.write("NO\n");
-                }
-            }
-        }
-        bw.flush();
+        return x == y;
     }
 }
