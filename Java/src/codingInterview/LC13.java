@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class LC13 {
 
-    private Map<String, Integer> values = new HashMap<>();
+    private static Map<String, Integer> values = new HashMap<>();
 
     static {
         values.put("M", 1000);
