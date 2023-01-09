@@ -42,8 +42,4 @@ public class LC144 {
         }
         return answer;
     }
-
-    public List<Integer> preorderTraversal3(TreeNode root) {
-
-    }
 }
