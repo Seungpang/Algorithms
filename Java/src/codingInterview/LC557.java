@@ -10,12 +10,12 @@ public class LC557 {
 
     public String reverseWords(String s) {
         int n = s.length();
-        int lastWordIndex = -1;
-        final char[] words = s.toCharArray();
-        for (int wordIndex = 0; wordIndex <= n; wordIndex++) {
-            if (wordIndex == n || words[wordIndex] == ' ') {
-                int startIndex = lastWordIndex + 1;
-                int endIndex = wordIndex - 1;
+        int lastStrIndex = -1;
+        char[] words = s.toCharArray();
+        for (int strIndex = 0; strIndex < n; strIndex++) {
+            if (strIndex == n || words[strIndex] == ' ') {
+                int startIndex = lastStrIndex + 1;
+                int endIndex = strIndex - 1;
                 while (startIndex < endIndex) {
                     char temp = words[startIndex];
                     words[startIndex] = words[endIndex];
@@ -23,7 +23,7 @@ public class LC557 {
                     startIndex++;
                     endIndex--;
                 }
-                lastWordIndex = wordIndex;
+                lastStrIndex = strIndex;
             }
         }
         return new String(words);
