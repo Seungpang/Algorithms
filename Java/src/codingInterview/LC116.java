@@ -14,7 +14,7 @@ public class LC116 {
         Node leftEnd = root;
         while (leftEnd.left != null) {
             Node head = leftEnd;
-            while (head!= null) {
+            while (head != null) {
                 head.left.next = head.right;
                 if (head.next != null) {
                     head.right.next = head.next.left;
