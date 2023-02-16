@@ -13,39 +13,13 @@ public class No11724 {
     static List<Integer>[] a;
     static boolean[] check;
 
-    static void dfs(int x) {
-        if (check[x]) {
-            return;
-        }
-        check[x] = true;
-        for (int y : a[x]) {
-            if (!check[y]) {
-                dfs(y);
-            }
-        }
-    }
-
-    static void bfs(int v) {
-        Queue<Integer> q = new LinkedList<>();
-        q.add(v);
-        check[v] = true;
-        while (!q.isEmpty()) {
-            int x = q.remove();
-            for (int y : a[x]) {
-                if (check[y] == false) {
-                    check[y] = true;
-                    q.add(y);
-                }
-            }
-        }
-    }
-
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        final Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int m = sc.nextInt();
         a = new ArrayList[n + 1];
-        for (int i = 1; i <= n; i++) { //인접 리스트 초기화
+        check = new boolean[n + 1];
+        for (int i = 1; i <= n; i++) {
             a[i] = new ArrayList<>();
         }
 
@@ -56,14 +30,40 @@ public class No11724 {
             a[to].add(from);
         }
 
-        check = new boolean[n + 1];
-        int result = 0;
+        int count = 0;
         for (int i = 1; i <= n; i++) {
             if (!check[i]) {
-                result++;
+                count++;
                 dfs(i);
             }
         }
-        System.out.println(result);
+        System.out.println(count);
+    }
+
+    private static void dfs(int i) {
+        if (check[i]) {
+            return;
+        }
+        check[i] = true;
+        for (int num : a[i]) {
+            if (!check[num]) {
+                dfs(num);
+            }
+        }
+    }
+
+    private static void bfs(int i) {
+        Queue<Integer> q = new LinkedList<>();
+        q.add(i);
+        check[i] = true;
+        while (!q.isEmpty()) {
+            int nowNode = q.poll();
+            for (int num : a[i]) {
+                if (!check[num]) {
+                    check[num] = true;
+                    q.add(num);
+                }
+            }
+        }
     }
 }

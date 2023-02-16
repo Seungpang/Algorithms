@@ -3,52 +3,58 @@ package BJ;
 //ABCDE
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class No13023 {
 
-    static int n,m;
-    static ArrayList<Integer>[] g;
+    static int n, m;
+    static List<Integer>[] arr;
     static boolean[] visited;
+    static boolean isFlag;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         m = sc.nextInt();
-        g = (ArrayList<Integer>[]) new ArrayList[n];
+        arr = new ArrayList[n];
+        visited = new boolean[n];
+        isFlag = false;
 
-        for (int i=0; i<n; i++) {
-            g[i] = new ArrayList<Integer>();
+        for (int i = 0; i < n; i++) {
+            arr[i] = new ArrayList<>();
         }
-
-        for (int i=0; i<m; i++) {
+        for (int i = 0; i < m; i++) {
             int from = sc.nextInt();
             int to = sc.nextInt();
-            g[from].add(to);
-            g[to].add(from);
+            arr[from].add(to);
+            arr[to].add(from);
         }
 
-        for (int i=0; i<n; i++) {
-            visited = new boolean[n];
-            dfs(i, 0);
-        }
-        System.out.println(0);
-    }
-
-    public static void dfs(int x, int len) {
-        if(len == 4) {
-            System.out.println(1);
-            System.exit(0);
-        }
-
-        visited[x] = true;
-        for (int i=0; i< g[x].size(); i++) {
-            int temp = g[x].get(i);
-            if (visited[temp] == false) {
-                visited[temp] = true;
-                dfs(temp, len + 1);
-                visited[temp] = false;
+        for (int i = 0; i < n; i++) {
+            dfs(i, 1);
+            if (isFlag) {
+                break;
             }
         }
+        if (isFlag) {
+            System.out.println(1);
+        } else {
+            System.out.println(0);
+        }
+    }
+
+    static void dfs(int now, int depth) {
+        if (depth == 5 || isFlag) {
+            isFlag = true;
+            return;
+        }
+        visited[now] = true;
+        for (int i : arr[now]) {
+            if (!visited[i]) {
+                dfs(i, depth + 1);
+            }
+        }
+        visited[now] = false;
     }
 }
