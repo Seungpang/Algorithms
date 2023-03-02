@@ -37,7 +37,7 @@ public class No2178 {
                 int nx = x + dx[k];
                 int ny = y + dy[k];
                 if (0 <= nx && nx < n && 0 <= ny && ny < m) {
-                    if (check[nx][ny] == false && a[nx][ny] == 1) {
+                    if (!check[nx][ny] && a[nx][ny] == 1) {
                         q.add(new Pair(nx, ny));
                         dist[nx][ny] = dist[x][y] + 1;
                         check[nx][ny] = true;
