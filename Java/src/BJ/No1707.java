@@ -2,55 +2,62 @@ package BJ;
 //그래프
 //이분 그래프
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class No1707 {
-    public static boolean dfs(ArrayList<Integer>[] a, int[] color, int x, int c) {
-        color[x] = c;
-        for (int y : a[x]) {
-            if (color[y] == 0) {
-                if (dfs(a,color,y,3-c) == false) {
-                    return false;
-                }
-            } else if (color[y] == color[x]) {
-                return false;
-            }
-        }
-        return true;
-    }
+    static List<Integer>[] a;
+    static int[] check;
+    static boolean[] visited;
+    static boolean IsEven;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        while (t-- >0) {
-            int n = sc.nextInt();
-            int m = sc.nextInt();
-            ArrayList<Integer>[] a = new ArrayList[n + 1];
-            for (int i=1; i<=n; i++) {
+        int testCase = sc.nextInt();
+        for (int t = 0; t < testCase; t++) {
+            int V = sc.nextInt();
+            int E = sc.nextInt();
+            a = new ArrayList[V + 1];
+            visited = new boolean[V + 1];
+            check = new int[V + 1];
+            IsEven = true;
+            for (int i = 1; i <= V; i++) {
                 a[i] = new ArrayList<>();
             }
 
-            for (int i=0; i<m; i++) {
-                int u = sc.nextInt();
-                int v = sc.nextInt();
-                a[u].add(v);
-                a[v].add(u);
+            for (int i = 0; i < E; i++) {
+                int start = sc.nextInt();
+                int end = sc.nextInt();
+                a[start].add(end);
+                a[end].add(start);
             }
 
-            int[] color = new int[n + 1];
-            boolean ok = true;
-            for (int i=1; i<=n; i++) {
-                if (color[i] == 0) {
-                    if (dfs(a,color,i,1) == false) {
-                        ok = false;
-                    }
+            for (int i = 1; i <= V; i++) {
+                if (IsEven) {
+                    dfs(i);
+                } else {
+                    break;
                 }
             }
-            if (ok) {
+
+            if (IsEven) {
                 System.out.println("YES");
             } else {
                 System.out.println("NO");
+            }
+        }
+    }
+
+    private static void dfs(int start) {
+        visited[start] = true;
+        for (int i : a[start]) {
+            if (!visited[i]) {
+                check[i] = (check[start] + 1) % 2;
+                dfs(i);
+            } else if (check[start] == check[i]) {
+                IsEven = false;
             }
         }
     }
