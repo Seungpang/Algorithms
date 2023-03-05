@@ -8,43 +8,44 @@ import java.util.Scanner;
 
 public class No2178 {
 
-    static int[] dx = {0, 0, -1, 1};
-    static int[] dy = {1, -1, 0, 0};
-
+    static int[][] dirs = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
+    static int[][] arr;
+    static boolean[][] visited;
+    static int n, m;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        n = sc.nextInt();
+        m = sc.nextInt();
+        arr = new int[n][m];
+        visited = new boolean[n][m];
         sc.nextLine();
-        int[][] dist = new int[n][m];
-        int[][] a = new int[n][m];
-        boolean[][] check = new boolean[n][m];
-        for (int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             String s = sc.nextLine();
-            for (int j=0; j<m; j++) {
-                a[i][j] = s.charAt(j) - '0';
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = s.charAt(j) - '0';
             }
         }
+        bfs(0, 0);
+        System.out.println(arr[n - 1][m - 1]);
+    }
+
+    private static void bfs(int i, int j) {
         Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(0, 0));
-        check[0][0] = true;
-        dist[0][0] = 1;
+        q.add(new Pair(i, j));
+        visited[i][j] = true;
         while (!q.isEmpty()) {
-            Pair p = q.remove();
-            int x = p.x;
-            int y = p.y;
-            for (int k=0; k<4; k++) {
-                int nx = x + dx[k];
-                int ny = y + dy[k];
-                if (0 <= nx && nx < n && 0 <= ny && ny < m) {
-                    if (!check[nx][ny] && a[nx][ny] == 1) {
-                        q.add(new Pair(nx, ny));
-                        dist[nx][ny] = dist[x][y] + 1;
-                        check[nx][ny] = true;
+            final Pair now = q.poll();
+            for (int[] dir : dirs) {
+                int dx = now.x + dir[0];
+                int dy = now.y + dir[1];
+                if (dx >= 0 && dy >= 0 && dx < n && dy < m) {
+                    if (arr[dx][dy] != 0 && !visited[dx][dy]) {
+                        visited[dx][dy] = true;
+                        arr[dx][dy] = arr[now.x][now.y] + 1;
+                        q.add(new Pair(dx, dy));
                     }
                 }
             }
         }
-        System.out.println(dist[n - 1][m - 1]);
     }
 }
