@@ -18,9 +18,8 @@ public class No1920 {
 
         int m = sc.nextInt();
         for (int i = 0; i < m; i++) {
-            boolean find = false;
             int target = sc.nextInt();
-
+            boolean find = false;
             int start = 0;
             int end = arr.length - 1;
             while (start <= end) {
