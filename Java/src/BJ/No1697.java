@@ -2,49 +2,38 @@ package BJ;
 //bfs
 //숨바꼭질
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
 public class No1697 {
 
-    static final int MAX = 200000;
+    static final int MAX = 200001;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         int k = sc.nextInt();
-        boolean[] check = new boolean[MAX];
-        int[] dist = new int[MAX];
         Queue<Integer> q = new LinkedList<>();
+        int[] dist = new int[MAX];
+        Arrays.fill(dist, -1);
         q.add(n);
-        check[n] = true;
         dist[n] = 0;
         while (!q.isEmpty()) {
-            int now = q.remove();
-            if (now-1 >= 0) {
-                if (check[now-1] == false) {
-                    q.add(now - 1);
-                    check[now - 1] = true;
-                    dist[now - 1] = dist[now] + 1;
+            int now = q.poll();
+            for (int next : new int[]{now - 1, now + 1, now * 2}) {
+                if (next < 0 || next > 100000) {
+                    continue;
                 }
-            }
-            if (now+1 < MAX) {
-                if (check[now+1] == false) {
-                    q.add(now + 1);
-                    check[now + 1] = true;
-                    dist[now + 1] = dist[now] + 1;
+                if (dist[next] != -1) {
+                    continue;
                 }
-            }
-
-            if (now*2<MAX) {
-                if (check[now*2] == false) {
-                    q.add(now*2);
-                    check[now * 2] = true;
-                    dist[now * 2] = dist[now] + 1;
-                }
+                dist[next] = dist[now] + 1;
+                q.offer(next);
             }
         }
+
         System.out.println(dist[k]);
     }
 }
