@@ -7,51 +7,53 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-//class Pair {
-//    int x,y;
-//    Pair(int x,int y) {
-//        this.x = x;
-//        this.y = y;
-//    }
-//}
 
 public class No7562 {
 
-    static int[] dx = {-2, -1, 1, 2, 2, 1, -1, -2};
-    static int[] dy = {1, 2, 2, 1, -1, -2, -2, -1};
-
+    static int[][] dirs = {{-2, 1}, {-1, 2}, {1, 2}, {2, 1}, {2, -1}, {1, -2}, {-1, -2}, {-2, -1}};
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
-        while (t-- >0) {
+        while (t-- > 0) {
             int n = sc.nextInt();
-            int sx = sc.nextInt();
-            int sy = sc.nextInt();
-            int ex = sc.nextInt();
-            int ey = sc.nextInt();
-            int[][] d = new int[n][n];
-            for (int i=0; i<n; i++) {
-                Arrays.fill(d[i], -1);
+            int startX = sc.nextInt();
+            int startY = sc.nextInt();
+            int endX = sc.nextInt();
+            int endY = sc.nextInt();
+            int[][] dist = new int[n][n];
+            for (int i = 0; i < n; i++) {
+                Arrays.fill(dist[i], -1);
             }
-            Queue<Pair> q = new LinkedList<>();
-            q.add(new Pair(sx, sy));
-            d[sx][sy] = 0;
+            Queue<Point> q = new LinkedList<>();
+            q.offer(new Point(startX, startY));
+            dist[startX][startY] = 0;
+
             while (!q.isEmpty()) {
-                Pair p = q.remove();
-                int x = p.x;
-                int y = p.y;
-                for (int k=0; k<8; k++) {
-                    int nx = x + dx[k];
-                    int ny = y + dy[k];
-                    if (0 <= nx && nx < n && 0 <= ny && ny < n) {
-                        if (d[nx][ny] == -1) {
-                            d[nx][ny] = d[x][y] + 1;
-                            q.add(new Pair(nx, ny));
-                        }
+                Point now = q.poll();
+                for (int[] dir : dirs) {
+                    int nx = now.x + dir[0];
+                    int ny = now.y + dir[1];
+                    if (nx < 0 || nx >= n || ny < 0 || ny >= n) {
+                        continue;
                     }
+                    if (dist[nx][ny] != -1) {
+                        continue;
+                    }
+                    dist[nx][ny] = dist[now.x][now.y] + 1;
+                    q.offer(new Point(nx, ny));
                 }
             }
-            System.out.println(d[ex][ey]);
+            System.out.println(dist[endX][endY]);
+        }
+    }
+
+    static class Point {
+        int x;
+        int y;
+
+        public Point(final int x, final int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }
