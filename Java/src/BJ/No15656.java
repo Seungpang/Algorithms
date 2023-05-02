@@ -5,36 +5,37 @@ import java.util.Scanner;
 
 public class No15656 {
 
+    static int n, m;
     static int[] a = new int[10];
-    static int[] num = new int[10];
-
-    static StringBuilder go(int index, int n, int m) {
-        StringBuilder sb = new StringBuilder();
-        if (index == m) {
-            for (int i=0; i<m; i++) {
-                sb.append(num[a[i]]);
-                if (i != m-1) sb.append(" ");
-            }
-            sb.append("\n");
-            return sb;
-        }
-
-        StringBuilder ans = new StringBuilder();
-        for (int i=0; i<n; i++) {
-            a[index] = i;
-            ans.append(go(index + 1, n, m));
-        }
-        return ans;
-    }
+    static int[] num;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        n = sc.nextInt();
+        m = sc.nextInt();
+        num = new int[n];
         for (int i=0; i<n; i++) {
             num[i] = sc.nextInt();
         }
-        Arrays.sort(num,0,n);
-        System.out.print(go(0,n,m));
+        Arrays.sort(num);
+        go(1);
+        System.out.println(sb);
+    }
+
+    static void go(int index) {
+        if (index == m + 1) {
+            for (int i = 1; i <= m; i++) {
+                sb.append(num[a[i]]).append(" ");
+            }
+            sb.append("\n");
+            return;
+        } else {
+            for (int i = 0; i < n; i++) {
+                a[index] = i;
+                go(index + 1);
+                a[index] = 0;
+            }
+        }
     }
 }

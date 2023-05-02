@@ -5,36 +5,46 @@ import java.util.Scanner;
 
 public class No15655 {
 
-    static int[] num = new int[10];
+    static int n, m;
+    static int[] num;
     static int[] a = new int[10];
+    static boolean[] visited = new boolean[10];
 
-    static StringBuilder go(int index, int selected, int n, int m) {
-        StringBuilder sb = new StringBuilder();
-        if (selected == m) {
-            for (int i=0; i<m; i++) {
-                sb.append(num[a[i]]);
-                if (i != m-1) sb.append(" ");
-            }
-            sb.append("\n");
-            return sb;
-        }
-        StringBuilder ans = new StringBuilder();
-        if (index >= n) return ans;
-        a[selected] = index;
-        ans.append(go(index+1,selected+1,n,m));
-        a[selected] = 0;
-        ans.append(go(index + 1, selected, n, m));
-        return ans;
-    }
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
-        for (int i=0; i<n; i++) {
+        n = sc.nextInt();
+        m = sc.nextInt();
+        num = new int[n];
+        for (int i = 0; i < n; i++) {
             num[i] = sc.nextInt();
         }
-        Arrays.sort(num,0,n);
-        System.out.print(go(0,0,n,m));
+        Arrays.sort(num);
+        go(1);
+        System.out.println(sb);
+    }
+
+    public static void go(int index) {
+        if (index == m + 1) {
+            for (int i = 1; i <= m; i++) {
+                sb.append(num[a[i] - 1]).append(" ");
+            }
+            sb.append("\n");
+        } else {
+            int start = a[index - 1];
+            if (start == 0) {
+                start = 1;
+            }
+            for (int i = start; i <= n; i++) {
+                if (visited[i]) {
+                    continue;
+                }
+                a[index] = i;
+                visited[i] = true;
+                go(index + 1);
+                visited[i] = false;
+            }
+        }
     }
 }
