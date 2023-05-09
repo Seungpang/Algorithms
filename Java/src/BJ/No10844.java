@@ -2,6 +2,7 @@ package BJ;
 //다이내믹 프로그래밍
 //쉬운 계단 수
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class No10844 {
@@ -24,9 +25,6 @@ public class No10844 {
                 dp[i][j] %= mod;
             }
         }
-        long ans = 0;
-        for (int i=0; i<=9; i++) ans += dp[n][i];
-        ans %= mod;
-        System.out.println(ans);
+        System.out.println(Arrays.stream(dp[n]).sum() % mod);
     }
 }

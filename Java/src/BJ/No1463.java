@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class No1463 {
 
-    public static int[] dp = new int[1000005];
+    static int[] dp = new int[1000005];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

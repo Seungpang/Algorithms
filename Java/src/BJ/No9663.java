@@ -21,7 +21,7 @@ public class No9663 {
 		int x = row - 1;
 		int y = col - 1;
 		while (x >= 0 && y >= 0) {
-			if (a[x][y] == true) {
+			if (a[x][y]) {
 				return false;
 			}
 			x -= 1;
@@ -31,7 +31,7 @@ public class No9663 {
 		x = row - 1;
 		y = col + 1;
 		while (x >= 0 && y < n) {
-			if (a[x][y] == true) {
+			if (a[x][y]) {
 				return false;
 			}
 			x -= 1;

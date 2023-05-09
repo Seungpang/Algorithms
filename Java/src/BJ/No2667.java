@@ -17,79 +17,89 @@ import java.util.Scanner;
 
 public class No2667 {
 
-    static int[][] check;
-    static int[][] a;
     static int n;
-    public static final int[] dx = {0, 0, -1, 1};
-    public static final int[] dy = {1, -1, 0, 0};
-
-    public static void bfs(int i, int j, int cnt) {
-        Queue<Pair> q = new LinkedList<>();
-        q.add(new Pair(i, j));
-        check[i][j] = cnt;
-        while (!q.isEmpty()) {
-            Pair p = q.remove();
-            i = p.x;
-            j = p.y;
-            for (int k=0; k<4; k++) {
-                int nx = i + dx[k];
-                int ny = j + dy[k];
-                if (0 <= nx && nx < n && 0 <= ny && ny < n) {
-                    if (a[nx][ny] == 1 && check[nx][ny] == 0) {
-                        q.add(new Pair(nx, ny));
-                        check[nx][ny] = cnt;
-                    }
-                }
-            }
-        }
-    }
-    public static void dfs(int i, int j, int cnt) {
-        check[i][j] = cnt;
-        for (int k=0; k<4; k++) {
-            int nx = i + dx[k];
-            int ny = j + dy[k];
-            if (0 <= nx && nx < n && 0 <= ny && ny < n) {
-                if (a[nx][ny] == 1 && check[nx][ny] == 0) {
-                    dfs(nx, ny, cnt);
-                }
-            }
-        }
-    }
+    static int[][] a;
+    static int[][] visited;
+    static int[][] dirs = {{0, 1}, {0, -1}, {-1, 0}, {1, 0}};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
-        sc.nextLine();
         a = new int[n][n];
-        check = new int[n][n];
-        for (int i=0; i<n; i++) {
+        sc.nextLine();
+        for (int i = 0; i < n; i++) {
             String s = sc.nextLine();
-            for (int j=0; j<n; j++) {
+            for (int j = 0; j < n; j++) {
                 a[i][j] = s.charAt(j) - '0';
             }
         }
 
+        visited = new int[n][n];
         int cnt = 0;
         for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                if (a[i][j] == 1 && check[i][j] ==0) {
-                    dfs(i, j, ++cnt);
+            for (int j = 0; j < n; j++) {
+                if (a[i][j] == 1 && visited[i][j] == 0) {
+                    bfs(i, j, ++cnt);
                 }
             }
         }
 
         int[] result = new int[cnt];
         for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                if (check[i][j] != 0) {
-                    result[check[i][j] - 1] += 1;
+            for (int j = 0; j < n; j++) {
+                if (visited[i][j] != 0) {
+                    result[visited[i][j] - 1] += 1;
                 }
             }
         }
         Arrays.sort(result);
         System.out.println(cnt);
-        for (int i=0; i<cnt; i++) {
-            System.out.println(result[i]);
+        for (int i : result) {
+            System.out.println(i);
+        }
+    }
+
+    public static void dfs(int i, int j, int cnt) {
+        visited[i][j] = cnt;
+        for (int[] dir : dirs) {
+            int nx = i + dir[0];
+            int ny = j + dir[1];
+            if (nx < n && nx >= 0 && ny < n && ny >= 0) {
+                if (a[nx][ny] == 1 && visited[nx][ny] == 0) {
+                    visited[nx][ny] = cnt;
+                    bfs(nx, ny, cnt);
+                }
+            }
+        }
+    }
+
+    public static void bfs(int i, int j, int cnt) {
+        Queue<Pair> q = new LinkedList<>();
+        q.add(new Pair(i, j));
+        visited[i][j] = cnt;
+
+        while (!q.isEmpty()) {
+            Pair now = q.poll();
+            for (int[] dir : dirs) {
+                i = now.x + dir[0];
+                j = now.y + dir[1];
+                if (i < n && i >= 0 && j < n && j >= 0) {
+                    if (a[i][j] == 1 && visited[i][j] == 0) {
+                        visited[i][j] = cnt;
+                        q.add(new Pair(i, j));
+                    }
+                }
+            }
+        }
+    }
+
+    static class Pair {
+        int x;
+        int y;
+
+        public Pair(final int x, final int y) {
+            this.x = x;
+            this.y = y;
         }
     }
 }

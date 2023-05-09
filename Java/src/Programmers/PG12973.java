@@ -14,7 +14,7 @@ public class PG12973 {
         if (s.length() == 0) {
             return 0;
         }
-        
+
         Stack<Character> stack = new Stack<>();
         int index = 0;
         while (index < s.length()) {

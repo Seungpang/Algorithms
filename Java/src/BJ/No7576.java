@@ -2,17 +2,10 @@ package BJ;
 //그래프
 //토마토
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
-//class Pair {
-//    int x, y;
-//    Pair(int x, int y) {
-//        this.x = x;
-//        this.y = y;
-//    }
-//}
 
 public class No7576 {
     static int[] dx = {0, 0, -1, 1};
@@ -24,11 +17,13 @@ public class No7576 {
         int n = sc.nextInt();
         int[][] a = new int[n][m];
         int[][] dist = new int[n][m];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dist[i], -1);
+        }
         Queue<Pair> q = new LinkedList<>();
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
                 a[i][j] = sc.nextInt();
-                dist[i][j] = -1;
                 if (a[i][j] == 1) {
                     q.add(new Pair(i, j));
                     dist[i][j] = 0;
@@ -60,6 +55,7 @@ public class No7576 {
                 }
             }
         }
+
         for (int i=0; i<n; i++) {
             for (int j=0; j<m; j++) {
                 if (a[i][j] == 0 && dist[i][j] == -1) {
@@ -68,5 +64,13 @@ public class No7576 {
             }
         }
         System.out.println(result);
+    }
+
+   static class Pair {
+        int x, y;
+        Pair(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
 }

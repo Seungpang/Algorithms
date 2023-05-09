@@ -1,36 +1,28 @@
 package BJ;
+// 퇴사
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class No14501 {
 
-    static int[] t;
-    static int[] p;
-    static int n;
-    static int ans = 0;
-
-    public static void go(int day, int sum) {
-        if (day == n+1) {
-            if (ans < sum) ans = sum;
-            return;
-        }
-        if (day > n+1) {
-            return;
-        }
-        go(day + 1, sum);
-        go(day + t[day], sum + p[day]);
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        t = new int[n + 1];
-        p = new int[n + 1];
-        for (int i=1; i<=n; i++) {
+        int n = sc.nextInt();
+        int[] dp = new int[20];
+        int[] t = new int[n + 1];
+        int[] p = new int[n + 1];
+        for (int i = 1; i <= n; i++) {
             t[i] = sc.nextInt();
             p[i] = sc.nextInt();
         }
-        go(1, 0);
-        System.out.println(ans);
+        for (int i = n; i >= 1; i--) {
+            if (i + t[i] <= n + 1) {
+                dp[i] = Math.max(dp[i + t[i]] + p[i], dp[i + 1]);
+            } else {
+                dp[i] = dp[i + 1];
+            }
+        }
+        System.out.println(Arrays.stream(dp).max().getAsInt());
     }
 }

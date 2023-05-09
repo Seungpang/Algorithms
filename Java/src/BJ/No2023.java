@@ -6,14 +6,13 @@ public class No2023 {
     static int n;
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        final Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         dfs(2, 1);
         dfs(3, 1);
         dfs(5, 1);
         dfs(7, 1);
     }
-
     static void dfs(int num, int numberOfDigits) {
         if (numberOfDigits == n) {
             if (isPrime(num)) {

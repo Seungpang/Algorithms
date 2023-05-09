@@ -24,11 +24,12 @@ public class No13023 {
         for (int i = 0; i < n; i++) {
             arr[i] = new ArrayList<>();
         }
+
         for (int i = 0; i < m; i++) {
-            int from = sc.nextInt();
-            int to = sc.nextInt();
-            arr[from].add(to);
-            arr[to].add(from);
+            int start = sc.nextInt();
+            int end = sc.nextInt();
+            arr[start].add(end);
+            arr[end].add(start);
         }
 
         for (int i = 0; i < n; i++) {
@@ -37,10 +38,11 @@ public class No13023 {
                 break;
             }
         }
+
         if (isFlag) {
-            System.out.println(1);
+            System.out.println("1");
         } else {
-            System.out.println(0);
+            System.out.println("0");
         }
     }
 
