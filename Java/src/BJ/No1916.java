@@ -23,10 +23,10 @@ public class No1916 {
         dist = new int[n + 1];
         visit = new boolean[n + 1];
         Arrays.fill(dist, Integer.MAX_VALUE);
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i <=n; i++) {
             list[i] = new ArrayList<>();
         }
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < m; i++) {
             int start = sc.nextInt();
             int end = sc.nextInt();
             int cost = sc.nextInt();
@@ -51,6 +51,7 @@ public class No1916 {
                     if (!visit[n.targetNode] && dist[n.targetNode] > dist[now] + n.value) {
                         dist[n.targetNode] = dist[now] + n.value;
                         pq.add(new Node(n.targetNode, dist[n.targetNode]));
+                        System.out.println(n.targetNode);
                     }
                 }
             }

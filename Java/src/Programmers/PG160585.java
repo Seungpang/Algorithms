@@ -5,6 +5,8 @@ public class PG160585 {
     public static void main(String[] args) {
         final PG160585 pg160585 = new PG160585();
         System.out.println(pg160585.solution(new String[]{"O.X", ".O.", "..X"}));
+        String s = "abcd";
+        System.out.println(s.substring(2));
     }
 
     public int solution(String[] board) {

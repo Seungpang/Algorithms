@@ -2,6 +2,7 @@ package BJ;
 //다이내믹 프로그래밍
 //가장 큰 증가하는 부분 수열
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class No11055 {
@@ -23,13 +24,6 @@ public class No11055 {
                 }
             }
         }
-
-        int result = dp[1];
-        for (int i=1; i<=n; i++) {
-            if (result < dp[i]) {
-                result = dp[i];
-            }
-        }
-        System.out.println(result);
+        System.out.println(Arrays.stream(dp).max().getAsInt());
     }
 }

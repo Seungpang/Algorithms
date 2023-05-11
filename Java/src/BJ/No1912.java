@@ -20,9 +20,7 @@ public class No1912 {
             if (i == 0) {
                 continue;
             }
-            if (dp[i] < dp[i-1] + a[i]) {
-                dp[i] = dp[i - 1] + a[i];
-            }
+            dp[i] = Math.max(dp[i - 1] + a[i], dp[i]);
         }
 
         int result = dp[0];

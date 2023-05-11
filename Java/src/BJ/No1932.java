@@ -2,6 +2,7 @@ package BJ;
 //다이내믹 프로그래밍
 //정수 삼각형
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class No1932 {
@@ -23,13 +24,6 @@ public class No1932 {
                 dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1]) + a[i][j];
             }
         }
-
-        int result = dp[1][1];
-        for (int i=1; i<=n; i++) {
-            if (result < dp[n][i]) {
-                result = dp[n][i];
-            }
-        }
-        System.out.println(result);
+        System.out.println(Arrays.stream(dp[dp.length-1]).max().getAsInt());
     }
 }

@@ -2,43 +2,36 @@ package BJ;
 //트리
 //트리의 부모 찾기
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class No11725 {
 
+    static List<Integer>[] adj = new ArrayList[100001];
+    static int[] p = new int[100001];
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        ArrayList<Integer>[] a = new ArrayList[n+1];
-        for (int i = 1; i <= n; i++) {
-            a[i] = new ArrayList<Integer>();
+        for (int i = 0; i < adj.length; i++) {
+            adj[i] = new ArrayList<>();
         }
-        for (int i = 0; i < n - 1; i++) {
+
+        for (int i = 0; i < n-1; i++) {
             int u = sc.nextInt();
             int v = sc.nextInt();
-            a[u].add(v);
-            a[v].add(u);
+            adj[u].add(v);
+            adj[v].add(u);
         }
-        boolean[] check = new boolean[n + 1];
-        int[] parent = new int[n + 1];
-        Queue<Integer> q = new LinkedList<>();
-        q.add(1);
-        check[1] = true;
-        while (!q.isEmpty()) {
-            int x = q.remove();
-            for (int y : a[x]) {
-                if (check[y] == false) {
-                    check[y] = true;
-                    parent[y] = x;
-                    q.add(y);
-                }
-            }
-        }
+        dfs(1);
         for (int i = 2; i <= n; i++) {
-            System.out.println(parent[i]);
+            System.out.println(p[i]);
+        }
+    }
+
+    public static void dfs(int cur) {
+        for (int next : adj[cur]) {
+            if (p[cur] == next) continue;
+            p[next] = cur;
+            dfs(next);
         }
     }
 }

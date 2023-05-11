@@ -26,16 +26,16 @@ public class No2805 {
             max = Math.max(max, a[i]);
         }
 
-        long l = 0;
-        long r = max;
+        long left = 0;
+        long right = max;
         long ans = 0;
-        while (l <= r) {
-            long mid = (l + r) / 2;
+        while (left <= right) {
+            long mid = (left + right) / 2;
             if (check(a, m, mid)) {
                 ans = Math.max(mid, ans);
-                l = mid + 1;
+                left = mid + 1;
             } else {
-                r = mid - 1;
+                right = mid - 1;
             }
         }
         System.out.println(ans);
