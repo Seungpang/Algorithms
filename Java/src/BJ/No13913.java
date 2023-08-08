@@ -2,61 +2,49 @@ package BJ;
 //bfs
 //숨바꼭질 4
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class No13913 {
 
-    static final int MAX = 200000;
+    static final int MAX = 200001;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+        int[] dist = new int[MAX];
+        boolean[] check = new boolean[MAX];
+        int[] from = new int[MAX];
+        Queue<Integer> q = new LinkedList<>();
+        q.add(N);
+        check[N] = true;
+        dist[N] = 0;
+        while (!q.isEmpty()) {
+            int now = q.remove();
+            for (int next : new int[]{now - 1, now + 1, now * 2}) {
+                if (next < MAX && next >= 0 && check[next] == false) {
+                    q.offer(next);
+                    check[next] = true;
+                    dist[next] = dist[now] + 1;
+                    from[next] = now;
+                }
+            }
+        }
+        System.out.println(dist[K]);
+        print(from, N, K);
+        System.out.println();
+    }
 
     public static void print(int[] from, int n, int k) {
         if (n != k) {
             print(from, n, from[k]);
         }
         System.out.print(k + " ");
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int k = sc.nextInt();
-        int[] dist = new int[MAX];
-        boolean[] check = new boolean[MAX];
-        int[] from = new int[MAX];
-        Queue<Integer> q = new LinkedList<>();
-        q.add(n);
-        check[n] = true;
-        dist[n] = 0;
-        while (!q.isEmpty()) {
-            int now = q.remove();
-            if (now-1 >=0) {
-                if (check[now-1] == false) {
-                    q.add(now - 1);
-                    check[now - 1] = true;
-                    dist[now - 1] = dist[now] + 1;
-                    from[now - 1] = now;
-                }
-            }
-            if (now+1 < MAX) {
-                if (check[now+1] == false) {
-                    q.add(now + 1);
-                    check[now + 1] = true;
-                    dist[now + 1] = dist[now] + 1;
-                    from[now + 1] = now;
-                }
-            }
-            if (now*2 < MAX) {
-                if (check[now*2] == false) {
-                    q.add(now * 2);
-                    check[now * 2] = true;
-                    dist[now * 2] = dist[now] + 1;
-                    from[now * 2] = now;
-                }
-            }
-        }
-        System.out.println(dist[k]);
-        print(from, n, k);
-        System.out.println();
     }
 }
