@@ -1,23 +1,30 @@
 package BJ;
 // 동전 1
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class No2293 {
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int k = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+
+        int[] coins = new int[n];
         int[] dp = new int[k + 1];
-        for (int t = 0; t < n; t++) {
-            int coin = sc.nextInt();
-            for (int i = 1; i <= k; i++) {
-                if (i - coin > 0) {
-                    dp[i] = dp[i] + dp[i - coin];
-                } else if (i - coin == 0) {
-                    dp[i]++;
-                }
+
+        for (int i = 0; i < n; i++) {
+            coins[i] = Integer.parseInt(br.readLine());
+        }
+
+        dp[0] = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = coins[i]; j <= k; j++) {
+                dp[j] += dp[j - coins[i]];
             }
         }
         System.out.println(dp[k]);
