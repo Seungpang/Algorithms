@@ -2,30 +2,37 @@ package BJ;
 //시뮬레이션 구현
 //인구 이동
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class No16234 {
 
     final static int[] dx = {0, 0, -1, 1};
     final static int[] dy = {1, -1, 0, 0};
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int l = sc.nextInt();
-        int r = sc.nextInt();
 
-        int[][] a = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                a[i][j] = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(st.nextToken());
+        int L = Integer.parseInt(st.nextToken());
+        int R = Integer.parseInt(st.nextToken());
+
+        int[][] A = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                A[i][j] = Integer.parseInt(st.nextToken());
             }
         }
 
         int ans = 0;
         while (true) {
-            if (bfs(a, l, r)) {
+            if (bfs(A, L, R)) {
                 ans += 1;
             } else {
                 break;
@@ -34,56 +41,54 @@ public class No16234 {
         System.out.println(ans);
     }
 
-    static boolean bfs(int[][] a, int l, int r) {
-        int n = a.length;
-        boolean[][] check = new boolean[n][n];
+    static boolean bfs(int[][] A, int L, int R) {
+        int n = A.length;
+        boolean[][] visited = new boolean[n][n];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                check[i][j] = false;
-            }
+            Arrays.fill(visited[i], false);
         }
 
-        boolean ok = false;
+        boolean isMoved = false;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (!check[i][j]) {
-                    Queue<Integer> q = new LinkedList<>();
-                    q.add(i);
-                    q.add(j);
-                    check[i][j] = true;
-                    Queue<Integer> s = new LinkedList<>();
-                    s.add(i);
-                    s.add(j);
-                    int sum = a[i][j];
+                if (!visited[i][j]) {
+                    Queue<int[]> q = new LinkedList<>();
+                    q.add(new int[]{i, j});
+                    visited[i][j] = true;
+                    Queue<int[]> s = new LinkedList<>();
+                    s.add(new int[]{i, j});
+                    int sum = A[i][j];
                     while (!q.isEmpty()) {
-                        int x = q.remove();
-                        int y = q.remove();
+                        int[] now = q.poll();
+                        int x = now[0];
+                        int y = now[1];
                         for (int k = 0; k < 4; k++) {
                             int nx = x + dx[k];
                             int ny = y + dy[k];
                             if (0 <= nx && nx < n && 0 <= ny && ny < n) {
-                                if (check[nx][ny]) continue;
-                                int diff = a[nx][ny] - a[x][y];
+                                if (visited[nx][ny]) continue;
+                                int diff = A[nx][ny] - A[x][y];
                                 if (diff < 0) diff = -diff;
-                                if (l <= diff && diff <= r) {
-                                    q.add(nx); q.add(ny);
-                                    s.add(nx); s.add(ny);
-                                    check[nx][ny] = true;
-                                    ok = true;
-                                    sum += a[nx][ny];
+                                if (L <= diff && diff <= R) {
+                                    q.add(new int[]{nx, ny});
+                                    s.add(new int[]{nx, ny});
+                                    visited[nx][ny] = true;
+                                    isMoved = true;
+                                    sum += A[nx][ny];
                                 }
                             }
                         }
                     }
-                    int val = sum / (s.size() / 2);
+                    int val = sum / s.size();
                     while (!s.isEmpty()) {
-                        int x = s.remove();
-                        int y = s.remove();
-                        a[x][y] = val;
+                        int[] now = s.poll();
+                        int x = now[0];
+                        int y = now[1];
+                        A[x][y] = val;
                     }
                 }
             }
         }
-        return ok;
+        return isMoved;
     }
 }
