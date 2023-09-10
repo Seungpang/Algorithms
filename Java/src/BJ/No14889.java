@@ -1,60 +1,66 @@
 package BJ;
+// 스타트와 링크
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class No14889 {
-    static int[][] s;
-    static int n;
-    public static int go(int index, ArrayList<Integer> first, ArrayList<Integer> second) {
-        //정답인 경우
-        if (index == n) {
-            if (first.size() != n/2) return -1;
-            if (second.size() != n/2) return -1;
-            int team1 = 0;
-            int team2 = 0;
-            for (int i=0; i<n/2; i++)  {
-                for (int j=0; j<n/2; j++) {
-                    if (i==j) continue;
-                    team1 += s[first.get(i)][first.get(j)];
-                    team2 += s[second.get(i)][second.get(j)];
-                }
+
+    static int[][] ability;
+    static boolean[] team;
+    static int min = Integer.MAX_VALUE;
+    static int N;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+        ability = new int[N][N];
+        team = new boolean[N];
+
+        for (int i = 0; i < N; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                ability[i][j] = Integer.parseInt(st.nextToken());
             }
-            int diff = Math.abs(team1 - team2);
-            return diff;
         }
-        //백트래킹 조건
-        if (first.size() > n/2) return -1;
-        if (second.size() > n/2) return -1;
-        int ans = -1;
-        //첫번째 팀에 넣는 경우
-        first.add(index);
-        int team1 = go(index + 1, first, second);
-        if (ans == -1 || (team1 != -1 && ans >team1)) {
-            ans = team1;
-        }
-        first.remove(first.size() - 1);
-        //두번째 팀에 넣는 경우
-        second.add(index);
-        int team2 = go(index + 1, first, second);
-        if (ans == -1 || (team2 != -1 && ans > team2)) {
-            ans = team2;
-        }
-        second.remove(second.size() - 1);
-        return ans;
+
+        diviedTeam(0, 0);
+
+        System.out.println(min);
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        s = new int[n][n];
-        for (int i=0; i<n; i++) {
-            for (int j=0; j<n; j++) {
-                s[i][j] = sc.nextInt();
+    private static void diviedTeam(int idx, int count) {
+        if (count == N / 2) {
+            diff();
+            return;
+        }
+
+        for (int i = idx; i < N; i++) {
+            if (!team[i]) {
+                team[i] = true;
+                diviedTeam(i + 1, count + 1);
+                team[i] = false;
             }
         }
-        ArrayList<Integer> first = new ArrayList<>();
-        ArrayList<Integer> second = new ArrayList<>();
-        System.out.println(go(0, first, second));
+    }
+
+    private static void diff() {
+        int start = 0, link = 0;
+
+        for (int i = 0; i < N - 1; i++) {
+            for (int j = i + 1; j < N; j++) {
+                if (team[i] && team[j]) {
+                    start += ability[i][j];
+                    start += ability[j][i];
+                } else if (!team[i] && !team[j]) {
+                    link += ability[i][j];
+                    link += ability[j][i];
+                }
+            }
+        }
+
+        min = Math.min(min, Math.abs(start - link));
     }
 }
