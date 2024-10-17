@@ -4,72 +4,46 @@ import java.util.Scanner;
 
 public class No10971 {
 
-    static boolean next_permutation(int[] a) {
-        int i = a.length - 1;
-        while (i > 0 && a[i - 1] >= a[i]) {
-            i -= 1;
-        }
-
-        if (i <= 0) {
-            return false;
-        }
-
-        int j = a.length - 1;
-        while (a[j] <= a[i - 1]) {
-            j -= 1;
-        }
-
-        int temp = a[i - 1];
-        a[i - 1] = a[j];
-        a[j] = temp;
-
-        j = a.length - 1;
-        while (i < j) {
-            temp = a[i];
-            a[i] = a[j];
-            a[j] = temp;
-            i += 1;
-            j -= 1;
-        }
-        return true;
-    }
+    static int N;
+    static int[][] W;
+    static boolean[] visited;
+    static int minCost = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] a = new int[n][n];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                a[i][j] = sc.nextInt();
+        N = sc.nextInt();
+        W = new int[N][N];
+        visited = new boolean[N];
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                W[i][j] = sc.nextInt();
             }
         }
 
-        int[] d = new int[n];
-        for (int i = 0; i < n; i++) {
-            d[i] = i;
+        for (int i = 0; i < N; i++) {
+            visited[i] = true;
+            tsp(i, i, 0, 1);
+            visited[i] = false;
         }
 
-        int ans = Integer.MAX_VALUE;
+        System.out.println(minCost);
+    }
 
-        do {
-            if (d[0] != 0) break;
-            boolean ok = true;
-            int sum = 0;
-            for (int i = 0; i < n - 1; i++) {
-                if (a[d[i]][d[i + 1]] == 0) {
-                    ok = false;
-                } else {
-                    sum += a[d[i]][d[i + 1]];
-                }
+    static void tsp(int start, int current, int cost, int count) {
+        if (count == N) {
+            if (W[current][start] != 0) {
+                minCost = Math.min(minCost, cost + W[current][start]);
             }
-            if (ok && a[d[n - 1]][d[0]] != 0) {
-                sum += a[d[n - 1]][d[0]];
-                if (ans > sum) {
-                    ans = sum;
-                }
-            }
-        } while (next_permutation(d));
+            return;
+        }
 
-        System.out.println(ans);
+        for (int i = 0; i < N; i++) {
+            if (!visited[i] && W[current][i] != 0) {
+                visited[i] = true;
+                tsp(start, i, cost + W[current][i], count + 1);
+                visited[i] = false;
+            }
+        }
     }
 }
