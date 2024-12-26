@@ -1,4 +1,5 @@
 package BJ;
+// 소수 찾기
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class No1978 {
         int n = sc.nextInt();
         int count = 0;
 
-        for (int i=0; i<n; i++) {
+        for (int i = 0; i < n; i++) {
             boolean isPrime = true;
 
             int num = sc.nextInt();
@@ -23,7 +24,7 @@ public class No1978 {
                     break;
                 }
             }
-            if(isPrime)
+            if (isPrime)
                 count++;
         }
         System.out.println(count);
