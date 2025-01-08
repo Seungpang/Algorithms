@@ -1,89 +1,93 @@
 package BJ;
-// 원자의 에너지
+// 전설
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.StringTokenizer;
 
 public class No19585 {
+    static Trie cTrie = new Trie();
+    static HashSet<String> nHs = new HashSet<>();
+    static int cMin, nMin, cMax, nMax;
 
-    static class Trie {
-        private static class Node {
-            Node[] children = new Node[26];
-            boolean isEnd;
-        }
-
-        private final Node root = new Node();
-
-        void insert(char[] word) {
-            Node node = root;
-            for (char c : word) {
-                int index = c - 'a';
-                if (node.children[index] == null) {
-                    node.children[index] = new Node();
-                }
-                node = node.children[index];
+    private static boolean searchTeamName(String s) {
+        int len = s.length();
+        Trie iter = cTrie;
+        for (int i = 0; i < len; i++) {
+            if (len - i < nMin)
+                break;
+            iter = iter.getChild(s.charAt(i));
+            if (iter == null) break;
+            if (iter.isWordEnd) {
+                if (nHs.contains(s.substring(i + 1)))
+                    return true;
             }
-            node.isEnd = true;
         }
-
-        boolean hasPrefix(char[] word, int start, int end) {
-            Node node = root;
-            for (int i = start; i < end; i++) {
-                int index = word[i] - 'a';
-                if (node.children[index] == null) return false;
-                node = node.children[index];
-                if (node.isEnd) return true;
-            }
-            return false;
-        }
+        return false;
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int C = Integer.parseInt(st.nextToken());
-        int N = Integer.parseInt(st.nextToken());
-
-        Trie colorTrie = new Trie();
-        Set<String> nicknames = new HashSet<>();
-
-        for (int i = 0; i < C; i++) {
-            colorTrie.insert(br.readLine().toCharArray());
+        int c = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        cMin = nMin = 1001;
+        cMax = nMax = 0;
+        for (int i = 0; i < c; i++) {
+            String cur = br.readLine();
+            int len = cur.length();
+            if (len < cMin) cMin = len;
+            if (len > cMax) cMax = len;
+            Trie iter = cTrie;
+            for (int j = 0; j < len; j++) {
+                iter = iter.addAndGetChild(cur.charAt(j));
+            }
+            iter.markingWordEnd();
         }
-
-        for (int i = 0; i < N; i++) {
-            nicknames.add(br.readLine());
+        for (int i = 0; i < n; i++) {
+            String cur = br.readLine();
+            int len = cur.length();
+            if (len < nMin) nMin = len;
+            if (len > nMax) nMax = len;
+            nHs.add(cur);
         }
-
-        int Q = Integer.parseInt(br.readLine());
+        int q = Integer.parseInt(br.readLine());
         StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < Q; i++) {
-            char[] teamName = br.readLine().toCharArray();
-            sb.append(isValidTeamName(teamName, colorTrie, nicknames) ? "Yes\n" : "No\n");
-        }
-
-        bw.write(sb.toString());
-        bw.flush();
-        bw.close();
-        br.close();
-    }
-
-    private static boolean isValidTeamName(char[] teamName, Trie colorTrie, Set<String> nicknames) {
-        for (int i = 1; i < teamName.length; i++) {
-            if (colorTrie.hasPrefix(teamName, 0, i) &&
-                    nicknames.contains(new String(teamName, i, teamName.length - i))) {
-                return true;
+        while (q-- > 0) {
+            String cur = br.readLine();
+            boolean chk = cur.length() <= cMax + nMax && searchTeamName(cur);
+            if (chk) {
+                sb.append('Y').append('e').append('s').append('\n');
+            } else {
+                sb.append('N').append('o').append('\n');
             }
         }
-        return false;
+        System.out.print(sb);
+    }
+
+    static class Trie {
+        boolean isWordEnd;
+        Trie[] child;
+
+        public Trie() {
+            isWordEnd = false;
+            child = new Trie[26];
+        }
+
+        public Trie addAndGetChild(char c) {
+            if (child[c - 'a'] == null)
+                child[c - 'a'] = new Trie();
+            return child[c - 'a'];
+        }
+
+        public Trie getChild(char c) {
+            return child[c - 'a'];
+        }
+
+        public void markingWordEnd() {
+            this.isWordEnd = true;
+        }
     }
 }
